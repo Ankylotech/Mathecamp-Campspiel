@@ -25,8 +25,8 @@ def coef_test(polynomial):
     return True
 
 
-def nst(solution):
-    degree = randrange(5, 7)
+def nst(solution, i):
+    degree = int(2 + i * 0.75)
     nsts = split(solution, degree)
     polynomial = numpy.polynomial.Polynomial.fromroots(nsts)
     while not coef_test(polynomial):

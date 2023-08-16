@@ -11,7 +11,7 @@ def split(n,k):
     result = []
     left = k
     while left > 1:
-        num = randrange(5,100)
+        num = randrange(5, 100)
         if uniform(0, 1) < 0.5:
             num *= -1
 
@@ -22,9 +22,9 @@ def split(n,k):
     return result
 
 
-def fruit_math(solution):
+def fruit_math(solution, i):
     result = ""
-    num = randrange(6, 8)
+    num = int(i*0.75 + 3)
     solution_numbers = split(solution,num)
     variables = [choice(primefactors(x)) * -1 if uniform(0, 1) < 0.5 else 1 for x in solution_numbers]
     for _ in range(num):
