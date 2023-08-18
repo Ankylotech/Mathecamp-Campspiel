@@ -102,4 +102,4 @@ def rpn_to_infix(s):
 
 
 def rand_ops(solution, i):
-    return rpn_to_infix(n_ops(solution, (i+5)*2))
+    return rpn_to_infix(n_ops(solution, (i+5)*2)), i < 3

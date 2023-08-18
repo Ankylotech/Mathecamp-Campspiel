@@ -9,7 +9,7 @@ from random import choice
 from random import sample
 
 # Anzahl Probleme und Lösungen
-problems = [7,21,24,23,29,41]
+problems = [7, 21, 24, 23, 29, 41]
 
 # Welche Funktionen verwendet werden um Aufgaben zu generieren
 generators = [rand_ops, fruit_math, nst]
@@ -32,7 +32,10 @@ for i in range(len(problems)):
     aufgaben = []
     for j in range(current_problems):
         solution = solutions[(j+offset) % len(solutions)]
-        aufgaben.append((choice(generators)(solution,i), solution))
+        result, ok = choice(generators)(solution, i)
+        while not ok:
+            result, ok = choice(generators)(solution, i)
+        aufgaben.append((result, solution))
 
     offset += current_problems % len(solutions)
     offset %= len(solutions)

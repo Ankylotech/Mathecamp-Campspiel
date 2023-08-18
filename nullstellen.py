@@ -1,16 +1,14 @@
-from random import randrange
+from random import randint
 from random import uniform
 import numpy
+
 
 # Spalte n in k Zufallszahlen, die auf n Summieren
 def split(n,k):
     result = []
     left = k
     while left > 1:
-        num = randrange(5,100)
-        if uniform(0, 1) < 0.5:
-            num *= -1
-
+        num = randint(-5, n-left+1)
         n -= num
         left -= 1
         result.append(num)
@@ -19,13 +17,12 @@ def split(n,k):
 
 
 def coef_test(polynomial):
-    for c in polynomial.coef:
-        if str(c)[:-2] != str(int(c)):
-            return False
-    return True
+    return 'e' not in str(polynomial)
 
 
 def nst(solution, i):
+    if i <= 2 or len(str(solution)) > 4:
+        return "", False
     degree = int(2 + i * 0.75)
     nsts = split(solution, degree)
     polynomial = numpy.polynomial.Polynomial.fromroots(nsts)
@@ -35,5 +32,5 @@ def nst(solution, i):
     result = "Summiere die Ganzzahligen Nullstellen des folgenden Polynoms: \n"
     result += str(polynomial)
     result += "\n"
-    return result
+    return result, True
 
